@@ -1,0 +1,12 @@
+body{
+    background-color:beige;
+}
+
+.heading{
+    font-size: 30px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+

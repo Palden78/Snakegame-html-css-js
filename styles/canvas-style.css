@@ -1,0 +1,11 @@
+#gameCanvas{
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+}
+
+.Game-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
