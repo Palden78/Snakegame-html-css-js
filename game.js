@@ -37,12 +37,45 @@ let snake = [
     }
 ];
 
+let dx = 10;
+let dy = 0;
+
+
 function drawSnakePart(snakePart){
     ctx.fillStyle = 'lightgreen';
     ctx.strokestyle = 'darkgreen';
     ctx.fillRect(snakePart.x, snakePart.y, 10,10);
     ctx.strokeRect(snakePart.x, snakePart.y, 10,10);
 }
+
+function changeDirection(event){
+    const keyPressed = event.key;
+    const goingUp = (dy === -10);
+    const goingDown = (dy === 10);
+    const goingRight = (dx === 10);
+    const goingLeft = (dx === -10);
+
+    if((keyPressed === 'ArrowLeft' || keyPressed ==='a') && !goingRight){
+        dx = -10;
+        dy = 0;
+    }
+
+    if((keyPressed === "ArrowUp" || keyPressed==='w') && !goingDown){
+        dx = 0;
+        dy = -10;
+    }
+
+    if((keyPressed === "ArrowRight" || keyPressed ==='d') && !goingLeft){
+        dx = 10;
+        dy = 0;
+    }
+
+    if((keyPressed === "ArrowDown" || keyPressed ==='s')&& !goingUp){
+        dx = 0;
+        dy = 10;
+    }
+}
+
 
 function undrawSnakePart(snakePart){
     ctx.fillStyle = 'white';
@@ -57,30 +90,7 @@ function drawSnake(){
 
 drawSnake();
 
-function rightadvanceSnake(){
-    const dx = 10;
-
-    const head = {
-        x: snake[0].x + dx,
-        y: snake[0].y 
-    }
-
-    snake.unshift(head);
-    snake.pop();
-}
-
-let firstUp = true
-function upadvanceSnake(){
-    console.log(firstUp);
-    if (firstUp){
-        console.log(firstUp);
-        rightadvanceSnake()
-        firstUp = false;
-    }
-    console.log(firstUp);
-    const dx = 0;
-    const dy = -10;
-
+function advanceSnake(direction){
     const head = {
         x: snake[0].x + dx,
         y: snake[0].y + dy
@@ -90,23 +100,6 @@ function upadvanceSnake(){
     snake.pop();
 }
 
-
-
-document.body.addEventListener('keydown', (event)=>{
-    if(event.key ==='d'){
-        clearCanvas()
-        rightadvanceSnake();
-        drawSnake();
-    }
-    else if(event.key==='w'){
-        clearCanvas()
-        upadvanceSnake();
-        drawSnake();
-    }else if(event.key==='s'){
-        playGame('scissors');
-    }
-});
-
 function main(){
     setTimeout(function onTick(){
         clearCanvas();
@@ -115,6 +108,12 @@ function main(){
         main();
     },100);
 }
+
+document.addEventListener("keydown", changeDirection)
+
+
+
+
 
 
 
