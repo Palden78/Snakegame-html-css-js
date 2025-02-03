@@ -9,3 +9,25 @@
     align-items: center;
     justify-content: center;
 }
+
+.score{
+    display: inline-block;
+    align-items: center;
+    font-size: 20px;
+    font-family: Arial;
+}
+
+.StartButton{
+    border:none;
+    padding: 10px 10px 10px 10px;
+    background-color: rgb(50, 191, 191);
+    border-radius: 10px;
+}
+
+.StartButton:hover{
+    background-color: rgb(62, 229, 229);
+}
+
+.StartButton:active{
+    background-color: rgb(67, 250, 250);
+}
