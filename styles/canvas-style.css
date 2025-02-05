@@ -31,3 +31,7 @@
 .StartButton:active{
     background-color: rgb(67, 250, 250);
 }
+
+.radio-button{
+    display: block;
+}

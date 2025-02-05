@@ -6,6 +6,7 @@ let Xfood = 0;
 let Yfood = 0;
 let GameScore = 0;
 let changingDirection;
+let Level = 1;
 
 
 function clearCanvas(){
@@ -119,7 +120,25 @@ function advanceSnake(){
 let GameOverMan = false;
 
 
-function main(){
+function main(Level){
+    let LevelGame = 100;
+
+    switch(true){
+        case(Level ===2):
+            LevelGame = 80 
+        case(Level === 3):
+            LevelGame = 60 
+        case(Level === 4):
+            LevelGame = 50; 
+        case(Level === 5):
+            LevelGame = 49; 
+        case(Level === 6):
+            LevelGame = 45; 
+        default:
+            LevelGame = 100;
+    }
+
+
     if(GameEnd()){
         document.querySelector('.StartButton').innerHTML = 'Play again';
         GameOverMan = true;
@@ -133,8 +152,8 @@ function main(){
         drawFood();
         advanceSnake();
         drawSnake();
-        main();
-    },100);
+        main(Level);
+    },LevelGame);
 }
 
 document.addEventListener("keydown", changeDirection)
@@ -180,6 +199,27 @@ function GameEnd(){
     return (HitLeftWall || HitRightWall || HitTopWall || HitBottomWall)
 }
 
+const radioButtons = document.querySelectorAll('input[name=SelectLevel]');
+
+// Add a change event listener to each radio button
+radioButtons.forEach(radioButton => {
+    radioButton.addEventListener('change', () => {
+        let level = document.querySelector('input[name=SelectLevel]:checked');
+        
+        if (level) {
+            console.log(level.value);
+            Level = level;
+        } else {
+            console.log("No radio button with the name 'SelectLevel' is checked.");
+        }
+    });
+});
+
+
+
+
+
+
 document.querySelector('.StartButton').addEventListener('click',()=>{
 
     if(GameOverMan){
@@ -211,7 +251,7 @@ document.querySelector('.StartButton').addEventListener('click',()=>{
         createFood();
     }
     else{
-        main();
+        main(Level);
     }
 })
 
