@@ -119,25 +119,28 @@ function advanceSnake(){
 
 let GameOverMan = false;
 
-
+let LevelGame = 100;
 function main(Level){
-    let LevelGame = 100;
-
-    switch(true){
-        case(Level ===2):
-            LevelGame = 80 
-        case(Level === 3):
-            LevelGame = 60 
-        case(Level === 4):
+    switch(Level){
+        case 2:
+            LevelGame = 80;
+            break;
+        case 3:
+            LevelGame = 60;
+            break;
+        case 4:
             LevelGame = 50; 
-        case(Level === 5):
+            break;
+        case 5:
             LevelGame = 49; 
-        case(Level === 6):
+            break;
+        case 6:
             LevelGame = 45; 
+            break;
         default:
             LevelGame = 100;
+            break;
     }
-
 
     if(GameEnd()){
         document.querySelector('.StartButton').innerHTML = 'Play again';
@@ -146,6 +149,7 @@ function main(Level){
         return;
     }
     GameOverMan = false;
+
     setTimeout(function onTick(){
         changingDirection = false;
         clearCanvas();
@@ -208,7 +212,7 @@ radioButtons.forEach(radioButton => {
         
         if (level) {
             console.log(level.value);
-            Level = level;
+            Level = parseInt(level.value);
         } else {
             console.log("No radio button with the name 'SelectLevel' is checked.");
         }
@@ -249,6 +253,7 @@ document.querySelector('.StartButton').addEventListener('click',()=>{
         ]
         drawSnake();
         createFood();
+        GameOverMan = false;
     }
     else{
         main(Level);
